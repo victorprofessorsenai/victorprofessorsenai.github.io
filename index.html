@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- ==================================================================== -->
+    <!-- 1. CONFIGURAÇÕES DA PÁGINA (CABEÇA DO DOCUMENTO - INVISÍVEL NA TELA) -->
+    <!-- ==================================================================== -->
+    
+    <meta charset="UTF-8">
+    <!-- A tag abaixo é essencial para o MOBILE FIRST. Ela diz ao navegador do celular 
+         para não dar um "zoom out" e sim respeitar a largura real do aparelho. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Portfólio - VICTOR LUAN SILVA</title>
+
+    <!-- TODO O CSS VEM AQUI DENTRO (Estilos, Cores, Layout) -->
+    <style>
+        /* 
+           O asterisco (*) seleciona TODOS os elementos da página.
+           Usamos para "zerar" as margens que os navegadores colocam por padrão.
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Variáveis de cores para facilitar mudanças futuras (Opcional, mas boa prática) */
+        :root {
+            --cor-fundo: #f4f6f9;
+            --cor-primaria: #003366; /* Azul SENAI */
+            --cor-secundaria: #ff0000; /* Vermelho SENAI */
+            --cor-texto: #333333;
+            --cor-branco: #ffffff;
+        }
+
+        /* Estilizando o corpo da página */
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* ========================================================= */
+        /* CABEÇALHO (HEADER) E MENU DE NAVEGAÇÃO                    */
+        /* ========================================================= */
+        header {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        /* Usando FLEXBOX no menu para alinhar os links lado a lado */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Se não couber na tela, joga para baixo */
+            gap: 15px; /* Espaço entre os links */
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: var(--cor-branco);
+            text-decoration: none; /* Tira o sublinhado dos links */
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            color: var(--cor-secundaria); /* Muda de cor ao passar o mouse */
+        }
+
+        /* ========================================================= */
+        /* SEÇÕES GERAIS E MOBILE FIRST                              */
+        /* ========================================================= */
+        section {
+            padding: 40px 20px;
+            margin: 20px auto;
+            max-width: 800px; /* Limita a largura no PC para não ficar esticado */
+            background-color: var(--cor-branco);
+            border-radius: 8px; /* Bordas arredondadas */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombreado leve */
+        }
+
+        h2 {
+            color: var(--cor-primaria);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* ========================================================= */
+        /* SEÇÃO: SOBRE MIM                                          */
+        /* ========================================================= */
+        .sobre-mim {
+            display: flex;
+            flex-direction: column; /* Mobile First: Imagem em cima, texto embaixo */
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .foto-perfil {
+            /* Como o link fornecido tem size=64, aumentei o CSS para não ficar minúsculo */
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%; /* Deixa a imagem redonda */
+            border: 3px solid var(--cor-primaria);
+        }
+
+        /* ========================================================= */
+        /* SEÇÃO: HABILIDADES (USANDO FLEXBOX)                       */
+        /* ========================================================= */
+        .habilidades-grid {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha no celular */
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .habilidade-card {
+            background-color: var(--cor-primaria);
+            color: var(--cor-branco);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* ========================================================= */
+        /* SEÇÃO: FORMULÁRIO DE CONTATO                              */
+        /* ========================================================= */
+        .form-grupo {
+            display: flex;
+            flex-direction: column; /* Rótulo em cima, campo embaixo (Melhor para celular) */
+            margin-bottom: 15px;
+        }
+
+        .form-grupo label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-grupo input, .form-grupo textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-branco);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        /* ========================================================= */
+        /* RODAPÉ (FOOTER)                                           */
+        /* ========================================================= */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--cor-texto);
+            color: var(--cor-branco);
+            margin-top: 40px;
+        }
+
+        /* ========================================================= */
+        /* MEDIA QUERIES (ADAPTAÇÃO PARA TELAS MAIORES - DESKTOP)    */
+        /* ========================================================= */
+        @media (min-width: 768px) {
+            /* Quando a tela for maior que 768px (Tablets/PCs), muda o Flexbox */
+            .sobre-mim {
+                flex-direction: row; /* Coloca a foto de um lado e o texto do outro */
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================================================================== -->
+    <!-- 2. CONTEÚDO DA PÁGINA (CORPO DO DOCUMENTO - O QUE APARECE NA TELA)   -->
+    <!-- ==================================================================== -->
+
+    <header>
+        <!-- NOME DO ALUNO AQUI -->
+        <h1>VICTOR LUAN SILVA</h1>
+        <nav>
+            <a href="#sobre">Sobre Mim</a>
+            <a href="#habilidades">Habilidades</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SEÇÃO: SOBRE MIM -->
+        <section id="sobre">
+            <h2>Sobre Mim</h2>
+            <div class="sobre-mim">
+                <!-- FOTO DE PERFIL DO ALUNO -->
+                <img src="https://avatars.githubusercontent.com/u/182300135?v=4&size=64" alt="Foto de Perfil" class="foto-perfil">
+                
+                <div>
+                    <!-- DESCRIÇÃO DO ALUNO -->
+                    <p>Olá! Meu nome é <strong>VICTOR LUAN SILVA</strong>.</p>
+                    <br>
+                    <p>SOU PROFESSOR DE TI NO SENAI DE SÃO GONÇALO DO RIO ABAIXO.</p>
+                    <br>
+                    <p>Atualmente ensino desenvolvimento Web, focando na criação de interfaces modernas com HTML, CSS e JavaScript, além de prepará-los para integrar sistemas reais utilizando PHP e bancos de dados MySQL.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: HABILIDADES -->
+        <section id="habilidades">
+            <h2>Minhas Habilidades</h2>
+            <div class="habilidades-grid">
+                <!-- Estes cards estão organizados lado a lado no PC e empilhados no celular via CSS Flexbox -->
+                <div class="habilidade-card">HTML5</div>
+                <div class="habilidade-card">CSS3</div>
+                <div class="habilidade-card">JavaScript</div>
+                <div class="habilidade-card">PHP</div>
+                <div class="habilidade-card">MySQL</div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PROJETOS -->
+        <section id="projetos">
+            <h2>Meus Projetos</h2>
+            <p><strong>Projeto 1:</strong> Sistema de Gestão de Notas (Em breve, com PHP e MySQL).</p>
+            <br>
+            <p><strong>Projeto 2:</strong> Landing Page Responsiva (Feita com Mobile First e CSS Flexbox).</p>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>PORTAL SENAI 2026 - Desenvolvido por VICTOR LUAN SILVA</p>
+    </footer>
+
+    <!-- ==================================================================== -->
+    <!-- 3. COMPORTAMENTO DA PÁGINA (JAVASCRIPT)                              -->
+    <!-- ==================================================================== -->
+    <script>
+        // O JavaScript fica no final do <body> para garantir que toda a tela (HTML) 
+        // já tenha carregado antes de tentarmos manipulá-la.
+
+        // Selecionando o formulário pelo seu ID
+        const formulario = document.getElementById('meuFormulario');
+
+        // Adicionando um "Ouvinte de Evento". Ele vai ficar esperando o formulário ser enviado (submit).
+        formulario.addEventListener('submit', function(evento) {
+            
+            // Aqui estamos interceptando o formulário apenas para fins didáticos de Front-End.
+            // Quando o XAMPP/PHP estiver rodando de verdade, podemos remover a linha abaixo (preventDefault), 
+            // pois ela "bloqueia" o redirecionamento automático para o "processa_contato.php".
+            
+            // evento.preventDefault(); // (Descomente esta linha para testar apenas o visual do Front-End)
+            
+            // Pegando o valor que o usuário digitou no campo de nome
+            const nomeDigitado = document.getElementById('nome').value;
+            
+            // Exibindo um alerta simples
+            alert("Olá " + nomeDigitado + "! Seu formulário está configurado e pronto para ser enviado ao XAMPP/PHP no arquivo processa_contato.php!");
+            
+            // Dica de JS: console.log ajuda muito a encontrar erros! Aperte F12 no navegador.
+            console.log("Tentativa de envio de formulário capturada pelo JavaScript.");
+        });
+    </script>
+</body>
+</html>
